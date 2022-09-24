@@ -1,4 +1,4 @@
-import jwt from "jsonwebtoken";
+import jwt, { decode } from "jsonwebtoken";
 
 const verifyAuthTokenMiddleware = (request, response, next) => {
   let token = request.headers.authorization;
@@ -9,10 +9,14 @@ const verifyAuthTokenMiddleware = (request, response, next) => {
       .json({ message: "missing authorization token" });
   }
 
+  token = token.split(" ")[1];
+
   jwt.verify(token, "SECRET_KEY", (error, decoded) => {
     if (error) {
+      console.log(token);
       return response.status(401).json({ message: "invalid token" });
     }
+    request.user = { id: decoded.subject };
     next();
   });
 };

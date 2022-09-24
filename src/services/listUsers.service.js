@@ -1,6 +1,6 @@
 import users from "../database";
 
-const listUsersService = (email, name, password) => {
+const listUsersService = () => {
   return users;
 };
 export default listUsersService;
