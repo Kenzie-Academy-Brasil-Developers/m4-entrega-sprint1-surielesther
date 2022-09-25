@@ -5,18 +5,22 @@ import * as bcrypt from "bcryptjs";
 const createUserService = async (email, name, password, isAdm) => {
   const hashedPassword = await bcrypt.hash(password, 10);
   const newUser = {
-    id: uuidv4(),
+    uuid: uuidv4(),
     email,
     name,
     isAdm,
     password: hashedPassword,
+    createdOn: new Date(),
+    updatedOn: new Date(),
   };
 
   const user = {
-    id: uuidv4(),
+    uuid: uuidv4(),
     email,
     name,
     isAdm,
+    createdOn: newUser.createdOn,
+    updatedOn: newUser.updatedOn,
   };
 
   users.push(newUser);

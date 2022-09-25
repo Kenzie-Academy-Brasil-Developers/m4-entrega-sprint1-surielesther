@@ -1,13 +1,14 @@
 import users from "../database";
 
 const userProfileService = () => {
-  //   const userIndex = users.findIndex((element) => element.id === id);
+  
+    const userIndex = users.findIndex((element) => element.id === id);
 
-  //   if (userIndex === -1) {
-  //     return "User not found";
-  //   }
+   if (userIndex === -1) {
+      return "User not found";
+    }
 
-  return users;
+  return userIndex;
 };
 
 export default userProfileService;

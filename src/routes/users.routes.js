@@ -13,16 +13,16 @@ import verifyIsAdmMiddleware from "../middlewares/verifyIsAdm.middleware";
 
 const router = Router();
 
-router.post("", verifyEmailAvailability, createUserController);
+router.post("/users", verifyEmailAvailability, createUserController);
 router.get(
-  "",
+  "/users",
   verifyAuthTokenMiddleware,
   verifyIsAdmMiddleware,
   listUsersController
 );
-router.get("/profile", verifyAuthTokenMiddleware, userProfileController);
-router.put("/:id", verifyAuthTokenMiddleware, updateUserController);
-router.delete("/:id", verifyAuthTokenMiddleware, deleteUserController);
+router.get("/users/profile", verifyAuthTokenMiddleware, userProfileController);
+router.patch("/users/:id", verifyAuthTokenMiddleware, updateUserController);
+router.delete("/users/:id", verifyAuthTokenMiddleware, deleteUserController);
 router.post("/login", userLoginController);
 
 export default router;
