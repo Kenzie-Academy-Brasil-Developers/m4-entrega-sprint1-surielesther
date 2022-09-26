@@ -15,10 +15,10 @@ const createUserService = async (email, name, password, isAdm) => {
   };
 
   const user = {
-    uuid: uuidv4(),
-    email,
-    name,
-    isAdm,
+    uuid: newUser.uuid,
+    email: newUser.email,
+    name: newUser.name,
+    isAdm: newUser.isAdm,
     createdOn: newUser.createdOn,
     updatedOn: newUser.updatedOn,
   };

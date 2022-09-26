@@ -5,9 +5,10 @@ const updateUserService = (id, name, email) => {
     id,
     name,
     email,
+    updatedOn: new Date(),
   };
 
-  const userIndex = users.findIndex((element) => element.id === id);
+  const userIndex = users.findIndex((element) => element.uuid === id);
 
   if (userIndex === -1) {
     return "User not found";

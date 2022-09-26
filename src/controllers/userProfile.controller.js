@@ -6,24 +6,18 @@ const userProfileController = (request, response) => {
   const users = userProfileService();
 
   let token = request.headers.authorization;
-  token = token.split(" ")[1];
+  const newToken = token.split(" ")[1];
 
-  jwt.verify(token, "SECRET_KEY", (error, decoded) => {
+  jwt.verify(newToken, "SECRET_KEY", (error, decoded) => {
     if (error) {
       return response.status(400).json({ message: "Ops, bad request" });
     }
-    request.user = { id: decoded.subject };
+    const userId = { uuid: decoded.uuid };
 
-    // const userIndex = users.findIndex((element) => element.id === request.user);
+    const userProfile = users.find((element) => element.uuid === userId.uuid);
 
-    // if (userIndex === -1) {
-    //   return "User not found";
-    // }
-
-    return request.user;
+    return response.status(200).json(userProfile);
   });
-
-  //   return response.json(user);
 };
 
 export default userProfileController;

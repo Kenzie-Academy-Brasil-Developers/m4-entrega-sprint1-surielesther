@@ -8,9 +8,9 @@ const verifyIsAdmMiddleware = (request, response, next) => {
     if (error) {
       return response.status(401).json({ message: "Unauthorized" });
     }
-    request.user = { id: decoded.subject, isAdm: decoded.isAdm };
+    const user = { id: decoded.uuid, isAdm: decoded.isAdm };
 
-    if (!request.user.isAdm) {
+    if (!user.isAdm) {
       return response.status(401).json({ message: "Unauthorized" });
     }
 

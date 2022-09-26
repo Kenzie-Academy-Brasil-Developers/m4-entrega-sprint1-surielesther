@@ -13,10 +13,9 @@ const verifyAuthTokenMiddleware = (request, response, next) => {
 
   jwt.verify(token, "SECRET_KEY", (error, decoded) => {
     if (error) {
-      console.log(token);
       return response.status(401).json({ message: "invalid token" });
     }
-    request.user = { id: decoded.subject };
+    request.user = { uuid: decoded.uuid };
     next();
   });
 };
